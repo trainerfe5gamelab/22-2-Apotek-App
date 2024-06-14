@@ -1,0 +1,421 @@
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  
+  section {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  /* Home.css */
+  .home-section {
+    padding: 100px 20px;
+    height: 100vh;
+    background-color: #2F5631;
+  }
+  
+  .home-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .home-text {
+    flex: 1;
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  .home-text h1 {
+    font-size: 2.5em;
+    color: #3ce9e9;
+    margin-bottom: 20px;
+  }
+  
+  .home-text h3 {
+    font-size: 1.7em;
+    color: #fdfcfc;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    padding: 15px 25px;
+    background: linear-gradient(45deg, #ff6f61, #ff914d);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 4%;
+  }
+  
+  .cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cta-button:focus {
+    outline: none;
+  }
+  
+  .cta-button:hover {
+    background-color: #72bba8;
+  }
+  
+  .home-image {
+    flex: 1;
+    max-width: 600px;
+    text-align: right;
+  }
+  
+  .home-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .home-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .home-text, .home-image {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .home-text {
+      margin-bottom: 20px;
+    }
+  }
+  
+  
+  .about-section, .faq-section, .login-section, .signup-section, .contact-section {
+    background-color: #2F5631;
+    color: #f7eded;
+    height: 100vh;
+  }
+  
+  /* Medicines.css */
+  .medicines-section {
+    min-height: 100vh;
+    height: auto;
+    padding: 20px;
+    background-color: #2F5631;
+    text-align: center;
+  }
+  
+  .medicine-list {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .medicine-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background-color: #fff;
+  }
+  
+  .medicine-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .medicine-item h3 {
+    margin-top: 0;
+  }
+  
+  .medicine-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .medicine-item input[type="number"] {
+    width: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .medicine-list {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .medicine-list {
+      margin-left: 5%;
+      padding-left: 7%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .medicine-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  @media (max-width: 768px) {
+    .home-section {
+      height: auto;
+      padding: 100px 20px;
+    }
+  
+    .medicine-item {
+      width: 90%;
+    }
+  
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+    }
+  }
+  
+  /*Navbarcss */
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    background-color: #2F5631; /* Warna latar belakang navbar */
+    padding: 10px 20px; /* Padding untuk konten navbar */
+  }
+  
+  .navbar-brand {
+    color: rgb(255, 255, 255); /* Warna teks brand */
+    font-size: 24px; /* Ukuran font brand */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff; /* Warna teks link */
+    margin-right: 15px; /* Jarak antar link */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffeb3b; /* Warna teks link saat dihover */
+  }
+  
+  .navbar-toggler {
+    border-color: #fff; /* Warna garis toggle */
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #fff; /* Warna ikon toggle */
+  }
+  
+  .navbar.scrolled {
+    background-color: #4CAF50; /* Warna navbar saat digulir */
+  }
+  
+  .user-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px; /* Jarak antara user icon dan link login */
+  }
+  
+  .user-icon:hover {
+    color: #ffeb3b; /* Warna user icon saat dihover */
+  }
+  
+  
+  
+  /* src/components/Footer.css */
+  .footer {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  /* FAQ.css */
+  .faq-section {
+    padding: 20px;
+  }
+  
+  .faq-section h2 {
+    margin-bottom: 20px;
+  }
+  
+  .faq-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  
+  .faq-toggle {
+    display: none;
+  }
+  
+  .faq-question {
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .faq-answer {
+    background-color: #48bb78;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    display: none;
+  }
+  
+  .faq-toggle:checked + .faq-question {
+    background-color: #11ac5e;
+    color: #ffffff;
+  }
+  
+  .faq-toggle:checked + .faq-question + .faq-answer {
+    display: block;
+  }
+  
+  /* Contact.css */
+  .contact-section {
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .contact-section h2 {
+    margin-bottom: 20px;
+  }
+  
+  .contact-section p {
+    margin-bottom: 20px;
+  }
+  
+  .contact-section a {
+    color: #24da42;
+    text-decoration: none;
+  }
+  
+  .contact-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* About.css */
+  .about-section {
+    padding: 100px 20px;
+    background-color: #f7f8f7;
+  }
+  
+  .about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .about-text {
+    flex: 1;
+    max-width: 600px;
+  }
+  
+  .about-text h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #000000;
+  }
+  
+  .about-text p {
+    font-size: 1.2em;
+    color: #000000;
+    text-align: left;
+  }
+  
+  .about-image {
+    flex: 1;
+    max-width: 600px;
+    text-align: right;
+  }
+  
+  .about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+    }
+  
+    .about-text, .about-image {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .about-text p {
+      text-align: center;
+    }
+  }
+  
