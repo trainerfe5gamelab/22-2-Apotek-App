@@ -3,7 +3,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "apotek",
+  database: "database_apotek",
 });
 db.connect((err) => {
   if (err) {

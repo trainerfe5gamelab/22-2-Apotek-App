@@ -1,4 +1,4 @@
-import db from "../config/Database.js";
+import db from "../config/db.js";
 class User {
   static createUser(newUser, callback) {
     const query = "INSERT INTO users SET ?";
