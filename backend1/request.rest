@@ -1,0 +1,75 @@
+
+###
+Get http://localhost:5000/obat
+
+###
+Get http://localhost:5000/obat/1
+
+
+###
+POST http://localhost:5000/obat
+Content-Type: application/json
+
+{
+    "namaObat": "mules",
+    "hargaObat": "122",
+    "gambarObat": "0",
+    "deskripsiObat": "1",
+    "tgl_expired": "3"
+}
+
+
+###
+PATCH  http://localhost:5000/obat/2
+Content-Type: application/json
+
+{
+    "namaObat": "pusing",
+    "hargaObat": "png",
+    "gambarObat": "0",
+    "deskripsiObat": "1",
+    "tgl_expired": "2024-12-11"
+}
+
+
+
+###
+DELETE http://localhost:5000/obat/1
+
+
+
+Users
+
+
+###
+Get http://localhost:5000/users
+
+###
+Get http://localhost:5000/users/1
+
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "nama": "mules",
+    "email": "122",
+    "password": ""
+}
+
+
+###
+PATCH  http://localhost:5000/users/1
+Content-Type: application/json
+
+{
+    "nama": "maul",
+    "email": "128",
+    "password": ""
+}
+
+
+
+###
+DELETE http://localhost:5000/users/1
