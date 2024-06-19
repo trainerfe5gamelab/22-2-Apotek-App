@@ -1,85 +1,173 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Medicines = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [orderQuantities, setOrderQuantities] = useState({});
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [obat, setMedicines] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false); // State untuk mengendalikan visibilitas popup
+  const [showAlert, setShowAlert] = useState(false); // State untuk menampilkan alert
+  const [alertMessage, setAlertMessage] = useState(""); // Pesan yang ditampilkan dalam alert
 
-  const medicines = [
-    { name: 'Paracetamol', description: 'Pain reliever', dosage: '500mg', sideEffects: 'Nausea', instructions: 'Take with water', image: 'paracetamol.jpg', price: 5000 },
-    { name: 'Vitamin C', description: 'Boosts immunity', dosage: '1000mg', sideEffects: 'None', instructions: 'Take after meal', image: 'vitamin_c.jpg', price: 10000 },
-    { name: 'Panadol', description: 'Pain reliever', dosage: '500mg', sideEffects: 'Nausea', instructions: 'Take with water', image: 'paracetamol.jpg', price: 5000 },
-    { name: 'Oskadon', description: 'Boosts immunity', dosage: '1000mg', sideEffects: 'None', instructions: 'Take after meal', image: 'vitamin_c.jpg', price: 10000 },
-    { name: 'Decolgen', description: 'Boosts immunity', dosage: '1000mg', sideEffects: 'None', instructions: 'Take after meal', image: 'vitamin_c.jpg', price: 10000 },
-  ];
+  useEffect(() => {
+    const fetchMedicines = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/obat");
+        setMedicines(response.data);
+      } catch (error) {
+        console.error("Error fetching obat:", error);
+      }
+    };
 
-  const filteredMedicines = medicines.filter(medicine => medicine.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    fetchMedicines();
+  }, []);
 
-  const handleQuantityChange = (medicineName, quantity) => {
-    const updatedQuantities = { ...orderQuantities, [medicineName]: quantity };
-    setOrderQuantities(updatedQuantities);
+  const filteredMedicines = obat.filter((obat) => {
+    const regex = new RegExp(searchTerm, "i");
+    return regex.test(obat.namaObat);
+  });
 
-    // Hitung total harga setiap kali jumlah pesanan berubah
-    let total = 0;
-    for (const [name, qty] of Object.entries(updatedQuantities)) {
-      total += qty * findMedicineByName(name).price;
+  if (obat.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const handleAddToCart = (obat) => {
+    const existingItem = cart.find(item => item.namaObat === obat.namaObat);
+    if (existingItem) {
+      setCart(cart.map(item => 
+        item.namaObat === obat.namaObat 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setCart([...cart, { ...obat, quantity: 1 }]);
     }
-    setTotalPrice(total);
+
+    // Tampilkan alert
+    setAlertMessage(`${obat.namaObat} ditambahkan ke keranjang.`);
+    setShowAlert(true);
+
+    // Atur agar alert tertutup setelah 3 detik
+    setTimeout(() => {
+      setShowAlert(false);
+      setAlertMessage("");
+    }, 3000);
   };
 
-  const findMedicineByName = (name) => {
-    return medicines.find(medicine => medicine.name === name);
+  const handleRemoveFromCart = (obat) => {
+    setCart(cart.filter(item => item.namaObat !== obat.namaObat));
+  };
+
+  const handleQuantityChange = (obat, quantity) => {
+    setCart(cart.map(item =>
+      item.namaObat === obat.namaObat
+        ? { ...item, quantity: quantity }
+        : item
+    ));
   };
 
   const generateOrderMessage = () => {
     let message = "Order: ";
-    for (const [medicineName, quantity] of Object.entries(orderQuantities)) {
-      if (quantity > 0) {
-        message += `${quantity} unit(s) of ${medicineName}`;
-      }
-    }
-    message += `Total Harga: Rp ${totalPrice.toLocaleString('id-ID')}`;
+    let totalPrice = 0;
+    cart.forEach(item => {
+      message += `${item.quantity} unit(s) of ${item.namaObat}, `;
+      totalPrice += item.quantity * item.hargaObat;
+    });
+    message += `Total Harga: Rp ${totalPrice.toLocaleString("id-ID")}`;
     return encodeURIComponent(message);
   };
 
   const handleOrderClick = () => {
     const orderMessage = generateOrderMessage();
-    const whatsappURL = `https://wa.me/6287709230971?text=${orderMessage}`;
-    window.open(whatsappURL, '_blank');
+    const whatsappURL = `https://wa.me/6281390937612?text=${orderMessage}`;
+    window.open(whatsappURL, "_blank");
   };
 
   return (
-    <section id="medicines" className="medicines-section">
+    <section id="obat" className="obat-section">
       <div>
-        <h2 style={{ color: 'white', paddingTop: '5%' }}>Medicines</h2>
+        <h2 style={{ paddingTop: "5%" }}>PRODUK OBAT</h2>
         <input
           type="text"
           placeholder="Search medicine"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div className="medicine-list" style={{ paddingTop: '5%', marginLeft: '1px' }}>
-          {filteredMedicines.map((medicine, index) => (
+        <div
+          className="medicine-list"
+          style={{ paddingTop: "5%", marginLeft: "1px" }}
+        >
+          {filteredMedicines.map((obat, index) => (
             <div key={index} className="medicine-item">
-              <h3>{medicine.name}</h3>
-              <img src={medicine.image} alt={medicine.name} />
-              <p>{medicine.description}</p>
-              <p>Dosage: {medicine.dosage}</p>
-              <p>Side Effects: {medicine.sideEffects}</p>
-              <p>Instructions: {medicine.instructions}</p>
-              <p>Price: Rp {medicine.price.toLocaleString('id-ID')}</p> {/* Ubah tampilan harga */}
-              <input
-                type="number"
-                min="0"
-                value={orderQuantities[medicine.name] || 0}
-                onChange={(e) => handleQuantityChange(medicine.name, parseInt(e.target.value))}
-              />
-              <button onClick={() => handleOrderClick(medicine.name)}>Order</button>
+              <h3>{obat.namaObat}</h3>
+              <img src={obat.gambarObat} alt={obat.namaObat} />            
+              <p>{obat.deskripsiObat}</p>
+              <p>Price: Rp {obat.hargaObat.toLocaleString("id-ID")}</p>
+              <button onClick={() => handleAddToCart(obat)}>Add to Cart</button>
             </div>
           ))}
         </div>
+        <button onClick={() => setIsCartOpen(true)} className="open-cart-button">
+          Cek Keranjang
+        </button>
+        {isCartOpen && (
+          <Cart 
+            cart={cart} 
+            onRemove={handleRemoveFromCart} 
+            onQuantityChange={handleQuantityChange}
+            onOrderClick={handleOrderClick}
+            onClose={() => setIsCartOpen(false)}
+          />
+        )}
+        {showAlert && (
+          <div className="alert-container">
+            <div className="alert">
+              {alertMessage}
+            </div>
+          </div>
+        )}
       </div>
     </section>
+  );
+};
+
+const Cart = ({ cart, onRemove, onQuantityChange, onOrderClick, onClose }) => {
+  const totalPrice = cart.reduce((acc, item) => acc + item.quantity * item.hargaObat, 0);
+
+  return (
+    <div className="cart-overlay">
+      <div className="cart-popup">
+        <button onClick={onClose} className="close-cart-button">X</button>
+        <h2>Keranjang</h2>
+        {cart.length === 0 ? (
+          <p>Keranjang Masih Kosong Yuk Di Order.</p>
+        ) : (
+          cart.map((item, index) => (
+            <div key={index} className="cart-item">
+              <h3>{item.namaObat}</h3>
+              <p>Price: Rp {item.hargaObat.toLocaleString("id-ID")}</p>
+              <p>Quantity: 
+                <input
+                  type="number"
+                  min="1"
+                  value={item.quantity}
+                  onChange={(e) =>
+                    onQuantityChange(item, parseInt(e.target.value))
+                  }
+                />
+              </p>
+              <button onClick={() => onRemove(item)}>Remove</button>
+            </div>
+          ))
+        )}
+        {cart.length > 0 && (
+          <>
+            <p>Total Harga: Rp {totalPrice.toLocaleString("id-ID")}</p>
+            <button onClick={onOrderClick}>Order</button>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -1,0 +1,139 @@
+.page-content-custom {
+    background-color: #f0f2f5;
+    padding: 6px;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .padding-custom {
+    padding: 6px;
+  }
+  
+  .card-custom {
+    border-radius: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border: none;
+    position: relative;
+  }
+  
+  .user-card-full-custom {
+    overflow: hidden;
+  }
+  
+  .bg-c-lite-green-custom {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  }
+  
+  .user-profile-custom {
+    padding: 85px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .img-radius-custom {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+  }
+  
+  .f-w-600-custom {
+    font-weight: 600;
+  }
+  
+  .m-b-25-custom {
+    margin-bottom: 50px;
+  }
+  
+  .m-b-20-custom {
+    margin-bottom: 40px;
+  }
+  
+  .m-t-40-custom {
+    margin-top: 70px;
+  }
+  
+  .p-b-5-custom {
+    padding-bottom: 20px;
+  }
+  
+  .b-b-default-custom {
+    border-bottom: 3px solid #e0e0e0;
+  }
+  
+  .text-muted-custom {
+    color: #6c757d;
+    font-size: 1.5rem;
+  }
+  
+  .social-link-custom {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .social-link-custom li {
+    margin-right: 20px;
+  }
+  
+  .social-link-custom i {
+    font-size: 32px;
+    transition: all 0.3s ease-in-out;
+    color: #6c757d;
+  }
+  
+  .social-link-custom i:hover {
+    color: #000;
+  }
+  
+  .icon-edit-custom {
+    cursor: pointer;
+    font-size: 28px;
+    color: #fff;
+    margin-top: 25px;
+  }
+  
+  .icon-close-custom {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .card-block-custom {
+    padding: 5rem;
+  }
+  
+  .h6-custom {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+  
+  .p-custom {
+    font-size: 1.6rem;
+  }
+  
+  .edit-profile-button {
+    display: block;
+    margin: 50px auto 0;
+    padding: 10px 20px;
+    background-color: #71b7e6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.6rem;
+  }
+  
+  .edit-profile-button:hover {
+    background-color: #9b59b6;
+  }
+  

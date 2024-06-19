@@ -41,7 +41,7 @@ const ContactUs = () => {
             <h3 style={{ paddingRight: '15%' }}>Consult with a Pharmacist</h3>
             <div className="social-media-icons" style={{ paddingRight: '50%' }}>
               <div className="d-block mb-3" style={{ paddingLeft: '24%' }}>
-                <FaWhatsapp size={32} /> <a href="https://wa.me/+6287709230971">+6287709230971</a>
+                <FaWhatsapp size={32} /> <a href="https://wa.me/+6281390937612">0813-9093-7612</a>
               </div>
               <div className="d-block">
                 <FaInstagram size={32} /> Dharmi
@@ -50,7 +50,7 @@ const ContactUs = () => {
             <br />
             <h3 style={{ paddingRight: '60%' }}>Open:</h3>
             <div className="open-hours" style={{ paddingLeft: '14%' }}>
-              <p><MdAccessTime size={24} /><b> Pelayanan Buka 24 Jam Setiap Hari.</b></p>
+              <p><MdAccessTime size={24} /><b> Buka 24 Jam Setiap Hari.</b></p>
             </div>
           </Col>
           <Col>

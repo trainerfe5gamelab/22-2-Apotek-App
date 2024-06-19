@@ -78,6 +78,12 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth hover effect */
+  }
+  
+  .home-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
   /* Responsive adjustments */
@@ -98,6 +104,7 @@ body {
   }
   
   
+  
   .about-section, .faq-section, .login-section, .signup-section, .contact-section {
     background-color: #2F5631;
     color: #f7eded;
@@ -108,18 +115,17 @@ body {
   .medicines-section {
     min-height: 100vh;
     height: auto;
-    padding: 20px;
+    padding: 40px 20px;
     background-color: #2F5631;
     text-align: center;
+    color: #fff;
   }
   
   .medicine-list {
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    justify-items: center;
   }
   
   .medicine-item {
@@ -127,16 +133,21 @@ body {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #4ba0062f;
+    text-align: left;
+    width: 100%;
+    max-width: 300px; 
   }
   
   .medicine-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
   
-  .medicine-item h3 {
+  .medicine-item h2 {
     margin-top: 0;
+    color: #2F5631;
   }
   
   .medicine-item img {
@@ -145,13 +156,150 @@ body {
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 10px;
+    border-radius: 10px 10px 0 0;
   }
-
+  
+  .medicine-item p {
+    color: #333;
+    margin: 5px 0;
+  }
+  
   .medicine-item input[type="number"] {
     width: 60px;
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .medicine-item button {
+    background-color: #2F5631;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .medicine-item button:hover {
+    background-color: #3A6B3B;
+  }
+  
+  /* Cart Overlay */
+  .cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .cart-popup {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .open-cart-button {
+    background-color: #7ab915;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .open-cart-button:hover {
+    background-color: #3A6B3B;
+  }
+  
+  .close-cart-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .close-cart-button:hover {
+    background: #e53935;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .cart-item h3 {
+    font-size: 1.2em;
+    margin: 0;
+  }
+  
+  .cart-item p {
+    margin: 0 10px;
+  }
+  
+  .cart-item input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .cart-item button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart-item button:hover {
+    background-color: #e53935;
+  }
+  
+  .cart p {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .cart button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart button:hover {
+    background-color: #007bb5;
   }
   
   /* Responsive adjustments */
@@ -159,19 +307,55 @@ body {
     .medicine-list {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-
-    .medicine-list {
-      margin-left: 5%;
-      padding-left: 7%;
-    }
   }
   
   @media (max-width: 480px) {
     .medicine-list {
       grid-template-columns: 1fr;
     }
+  
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .cart-item p {
+      margin: 5px 0;
+    }
   }
   
+  .alert-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 300px;
+    background-color: #db4112;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slide-in 0.5s forwards, slide-out 0.5s forwards 2.5s;
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes slide-out {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
   
   input[type="text"] {
     width: 100%;
@@ -401,12 +585,19 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth hover effect */
+  }
+  
+  .about-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .about-content {
       flex-direction: column;
+      text-align: center;
     }
   
     .about-text, .about-image {
