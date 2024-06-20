@@ -65,7 +65,7 @@ const CustomNavbar = () => {
           <Nav.Link href="#obat">Medicines</Nav.Link>
           <Nav.Link href="#faq">FAQ</Nav.Link>
           <Nav.Link href="#contact">Contact</Nav.Link>
-          <Nav.Link onClick={() => navigate('/signin')}>Admin</Nav.Link>
+          <Nav.Link onClick={() => navigate('/adminlogin')}>Admin</Nav.Link>
         </Nav>
         <Nav className="ms-auto">
           {isLoggedIn ? (
